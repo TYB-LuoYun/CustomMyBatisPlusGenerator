@@ -44,10 +44,10 @@ public class OrganinfoController {
          organinfoService.saveOrUpdate(organinfo);
     }
 
-
     @ApiOperation(value = "新增/更新")
     @PostMapping("saveOrUpdateCustom")
     public void saveOrUpdateCustom(@RequestBody OrganinfoVo organinfoVo){
+        //todo yourself
         organinfoService.saveOrUpdate(WrapperQuery.from(organinfoVo, Organinfo.class));
     }
 
@@ -68,24 +68,28 @@ public class OrganinfoController {
 
 
 
-    @ApiOperation(value = "查询-分页-Get")
-    @GetMapping("pages")
-    public IPage pages(@RequestParam(required = false)  Map<String,Object> params, PageQuery query){
-        return organinfoService.pages(WrapperQuery.query(params), query.Page());
+    @ApiOperation(value = "查询-分页-查询和返回不处理")
+    @RequestMapping("pages")
+    public IPage pages(@RequestParam(required = false)  Map<String,Object> params){
+        return organinfoService.pages(WrapperQuery.query(params), WrapperQuery.page(params));
     }
 
-
-    @ApiOperation(value = "查询-分页-Post(能接受多层级参数)")
-    @PostMapping("pages")
-    public IPage pages(@RequestBody OrganinfoVo organinfoVo, PageQuery query){
-
-        QueryWrapper queryWrapper = WrapperQuery.query(organinfoVo);
+    @ApiOperation(value = "查询-分页-查询和返回新增字段或特殊处理")
+    @PostMapping("lists")
+    public IPage lists(@RequestBody Map<String,Object> params){
         //todo yourself
-        return organinfoService.pages(queryWrapper, query.Page());
+        IPage<OrganinfoVo> pages = organinfoService.pages(WrapperQuery.parse(params, OrganinfoVo.class), WrapperQuery.page(params));
+        pages.getRecords().forEach(item->{
+//         todo    item.get...
+
+        });
+        return pages;
     }
 
 
-    @ApiOperation(value = "关联查询-分页")
+
+
+    @ApiOperation(value = "关联查询-分页-侧重于写xml")
     @PostMapping("pagesAssociate")
     public IPage pagesAssociate(@RequestParam(required = false)  Map<String,Object> params, PageQuery query){
         return organinfoService.pagesAssociate(params, query.Page());

@@ -84,21 +84,45 @@ class ${table.controllerName}<#if superControllerClass??>:${superControllerClass
 
 
 
-    @ApiOperation(value = "查询-分页-Get")
-    @GetMapping("pages")
+    @ApiOperation(value = "查询-分页-查询和返回不处理")
+    @RequestMapping("pages")
     public IPage pages(@RequestParam(required = false)  Map<String,Object> params, PageQuery query){
         return ${(table.serviceName?substring(1))?uncap_first}.pages(WrapperQuery.query(params), query.Page());
     }
 
 
-    @ApiOperation(value = "查询-分页-Post(能接受多层级参数)")
-    @PostMapping("pages")
-    public IPage pages(@RequestBody ${entity}Vo ${entity?uncap_first}Vo, PageQuery query){
-
-        QueryWrapper queryWrapper = WrapperQuery.query(${entity?uncap_first}Vo);
-        //todo yourself
-        return ${(table.serviceName?substring(1))?uncap_first}.pages(queryWrapper, query.Page());
+     @ApiOperation(value = "查询-分页-查询和返回新增字段或特殊处理")
+    @GetMapping("lists")
+    public IPage lists(@RequestParam(required = false)  Map<String,Object> params, PageQuery query){
+        return this.list(params,query);
     }
+
+   
+
+    @ApiOperation(value = "查询-分页-查询和返回新增字段或特殊处理")
+    @PostMapping("lists")
+    public IPage lists(@RequestBody Map<String,Object> params){
+
+        return this.list(params,null);
+    }
+
+    private IPage list(Map<String, Object> params, PageQuery query) {
+        IPage<${entity}Vo> pages = null;
+        if(query == null){
+           pages = ${(table.serviceName?substring(1))?uncap_first}.pages(WrapperQuery.parse(params, ${entity}Vo.class), query.Page());
+
+         }else{
+            pages = ${(table.serviceName?substring(1))?uncap_first}.pages(WrapperQuery.parse(params, ${entity}Vo.class), WrapperQuery.page(params));
+         }
+
+          pages.getRecords().forEach(item->{
+       //         todo    item.get...
+
+          });
+         return pages;
+    }
+
+
 
 
     @ApiOperation(value = "关联查询-分页")
