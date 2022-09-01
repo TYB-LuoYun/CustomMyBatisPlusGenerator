@@ -34,10 +34,10 @@ public class Generator {
     /**
      * 数据池
      */
-    private static String Url = "jdbc:mysql://115.231.27.19:3306/datacenter?&characterEncoding=utf8&useSSL=false&serverTimezone=UTC";
+    private static String Url = "jdbc:mysql://-----?&characterEncoding=utf8&useSSL=false&serverTimezone=UTC";
     private static String DriverName = "com.mysql.jdbc.Driver";
     private static String UserName = "root";
-    private static String Password = "RyDev@2022+";
+    private static String Password = "------";
 
 
     /**
