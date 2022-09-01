@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.module.sys.mapper.OrganinfoMapper">
+
+        <!-- 通用查询映射结果 -->
+        <resultMap id="BaseResultMap" type="com.ruoyi.module.sys.entity.Organinfo">
+                    <id column="OrganID" property="OrganID"/>
+                    <result column="OrganCode" property="OrganCode"/>
+                    <result column="OrganName" property="OrganName"/>
+                    <result column="OrganNameEN" property="OrganNameEN"/>
+                    <result column="OrganFullName" property="OrganFullName"/>
+                    <result column="OrganParentID" property="OrganParentID"/>
+                    <result column="OrganType" property="OrganType"/>
+                    <result column="OrganLatitude" property="OrganLatitude"/>
+                    <result column="OrganLongitude" property="OrganLongitude"/>
+                    <result column="OrganAddress" property="OrganAddress"/>
+                    <result column="OrganTell" property="OrganTell"/>
+                    <result column="Remark" property="Remark"/>
+                    <result column="SortNum" property="SortNum"/>
+                    <result column="DeleteFlag" property="DeleteFlag"/>
+                    <result column="province" property="province"/>
+                    <result column="city" property="city"/>
+                    <result column="area" property="area"/>
+                    <result column="town" property="town"/>
+                    <result column="HospitalGradeCode" property="HospitalGradeCode"/>
+                    <result column="HospitalGradeID" property="HospitalGradeID"/>
+                    <result column="HospitalType" property="HospitalType"/>
+                    <result column="Description" property="Description"/>
+                    <result column="Imgs" property="Imgs"/>
+                    <result column="ImgMain" property="ImgMain"/>
+                    <result column="WebsiteUrl" property="WebsiteUrl"/>
+                    <result column="HospitalLogo" property="HospitalLogo"/>
+                    <result column="AddAt" property="AddAt"/>
+                    <result column="ModifyAt" property="ModifyAt"/>
+        </resultMap>
+
+        <!-- 通用查询结果列 -->
+        <sql id="Base_Column_List">
+            OrganID, OrganCode, OrganName, OrganNameEN, OrganFullName, OrganParentID, OrganType, OrganLatitude, OrganLongitude, OrganAddress, OrganTell, Remark, SortNum, DeleteFlag, province, city, area, town, HospitalGradeCode, HospitalGradeID, HospitalType, Description, Imgs, ImgMain, WebsiteUrl, HospitalLogo, AddAt, ModifyAt
+        </sql>
+
+
+
+
+    <!--关联查询开始=========================================================-->
+    <resultMap id="AssociateMap" type="java.util.Map" >
+        <!--<association property="associate" select="selectAssociate" column="Status" javaType="String" ></association>-->
+    </resultMap>
+    <select id="selectAssociate" resultType="String"  >
+        <!--select DictionaryValue as StatusName from  t_dictionary where  DicCategroyCode = 'DoctorCheckStatus'-->
+        <!--and  DictionaryCode = # {Status}-->
+    </select>
+    <!-- 自定义关联查询left join  -->
+    <select id="pagesAssociate" resultMap="AssociateMap">
+        select * from  t_organinfo
+    </select>
+    <!--关联查询结束=========================================================-->
+
+
+
+
+</mapper>
