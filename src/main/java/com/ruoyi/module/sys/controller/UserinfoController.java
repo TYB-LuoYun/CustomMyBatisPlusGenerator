@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
  * </p>
  *
  * @author ftm
- * @since 2022-09-01
+ * @since 2022-09-02
  */
 @Api(tags = {"员工，医院，卫健，第三方厂商，领导，管理员等等"})
 @RestController
@@ -86,9 +86,10 @@ public class UserinfoController {
     @ApiOperation(value = "查询-分页-查询和返回新增字段或特殊处理")
     @PostMapping("lists")
     public IPage lists(@RequestBody Map<String,Object> params){
-
         return this.list(params,null);
     }
+
+
 
     private IPage list(Map<String, Object> params, PageQuery query) {
         IPage<UserinfoVo> pages = null;

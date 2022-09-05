@@ -17,7 +17,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author ftm
- * @since 2022-09-01
+ * @since 2022-09-02
  */
 @Data
 @EqualsAndHashCode(callSuper = false)

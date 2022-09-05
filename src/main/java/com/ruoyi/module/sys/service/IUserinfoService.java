@@ -12,7 +12,7 @@ import java.util.Map;
  * </p>
  *
  * @author ftm
- * @since 2022-09-01
+ * @since 2022-09-02
  */
 public interface IUserinfoService extends IService<Userinfo> {
 

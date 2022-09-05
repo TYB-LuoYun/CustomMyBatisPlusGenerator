@@ -18,7 +18,7 @@ import com.ruoyi.module.base.WrapperQuery;
  * </p>
  *
  * @author ftm
- * @since 2022-09-01
+ * @since 2022-09-02
  */
 @Service
 public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo> implements IUserinfoService {

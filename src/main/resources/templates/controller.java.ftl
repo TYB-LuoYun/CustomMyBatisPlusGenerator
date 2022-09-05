@@ -102,7 +102,6 @@ class ${table.controllerName}<#if superControllerClass??>:${superControllerClass
     @ApiOperation(value = "查询-分页-查询和返回新增字段或特殊处理")
     @PostMapping("lists")
     public IPage lists(@RequestBody Map<String,Object> params){
-
         return this.list(params,null);
     }
 

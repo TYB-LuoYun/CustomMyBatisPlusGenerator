@@ -13,7 +13,7 @@ import org.apache.ibatis.annotations.Param;
     * </p>
  *
  * @author ftm
- * @since 2022-09-01
+ * @since 2022-09-02
  */
 public interface UserinfoMapper extends BaseMapper<Userinfo> {
      IPage pagesAssociate(IPage page, @Param("param") Map<String, Object> params);

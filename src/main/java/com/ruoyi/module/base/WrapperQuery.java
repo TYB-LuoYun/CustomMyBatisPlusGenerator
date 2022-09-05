@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.lang.reflect.Field;
 /**
  * @Author ftm
- * @Date 2022-09-01 18:12:28
+ * @Date 2022-09-02 17:13:34
  * @Description Query条件构造器
  */
 public class WrapperQuery {
