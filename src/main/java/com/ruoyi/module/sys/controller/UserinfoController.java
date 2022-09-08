@@ -1,12 +1,15 @@
 package com.ruoyi.module.sys.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.ruoyi.module.base.Fields;
 import org.springframework.web.bind.annotation.*;
 import com.ruoyi.module.sys.service.IUserinfoService;
 import com.ruoyi.module.sys.entity.Userinfo;
 import com.ruoyi.module.sys.vo.UserinfoVo;
 import com.ruoyi.module.base.WrapperQuery;
 import com.ruoyi.module.base.PageQuery;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
@@ -100,10 +103,12 @@ public class UserinfoController {
             pages = userinfoService.pages(WrapperQuery.parse(params, UserinfoVo.class), WrapperQuery.page(params));
          }
 
-          pages.getRecords().forEach(item->{
-       //         todo    item.get...
+//关联条件【{1,2}，{1,3}，{2,4}，{1,4}】,
+        LambdaQueryWrapper<Userinfo> userinfoLambdaQueryWrapper = Wrappers.<Userinfo>lambdaQuery();
+        Wrappers.<Userinfo>lambdaQuery().eq(Userinfo::getAddAt,1 );
 
-          });
+
+
          return pages;
     }
 
@@ -115,6 +120,13 @@ public class UserinfoController {
     public IPage pagesAssociate(@RequestParam(required = false)  Map<String,Object> params, PageQuery query){
         return userinfoService.pagesAssociate(params, query.Page());
     }
+
+    public static void main(String[] args) {
+        String fieldName = Fields.getFieldName(Userinfo::getUserID);
+//        System.out.println(fieldName);
+        System.out.println("字段名：" +fieldName);
+    }
+
 
 
  }

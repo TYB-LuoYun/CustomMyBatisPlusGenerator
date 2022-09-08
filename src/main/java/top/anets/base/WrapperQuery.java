@@ -1,4 +1,4 @@
-package ${package};
+package top.anets.base;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -11,9 +11,9 @@ import java.util.Map;
 import java.util.HashMap;
 import java.lang.reflect.Field;
 /**
- * @Author ${author}
- * @Date ${date}
- * @Description ${comments!''}
+ * @Author ftm
+ * @Date 2022-09-07 11:26:36
+ * @Description Query条件构造器
  */
 public class WrapperQuery {
 
@@ -22,10 +22,7 @@ public class WrapperQuery {
     private static List<String> Exclude = Arrays.asList("current","size","total");
 
     public  static  QueryWrapper   query(Object vo){
-       return query(objectToMap(vo));
-    }
-
-    public  static  QueryWrapper   query(Map<String,Object> map){
+        Map<String,Object> map =objectToMap(vo);
         if(map==null){
             return new QueryWrapper();
         }
@@ -75,7 +72,7 @@ public class WrapperQuery {
 
     public static <T> QueryWrapper<T> parse(Map<String, Object> params, Class<T> classz) {
         T t = map2Obj(params, classz);
-        QueryWrapper<T> query =  WrapperQuery.query(t);
+        QueryWrapper<T> query = com.ruoyi.module.base.WrapperQuery.query(t);
         return  query;
     }
 
