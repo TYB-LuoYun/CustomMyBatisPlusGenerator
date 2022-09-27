@@ -92,10 +92,10 @@ class ${table.controllerName}<#if superControllerClass??>:${superControllerClass
 
 
     @ApiOperation(value = "查询-分页-查询和返回新增字段或特殊处理")
-    @GetMapping("lists")
-    public IPage lists(@RequestParam(required = false) ${entity}Vo ${entity?uncap_first}Vo, PageQuery query){
-        IPage<${entity}Vo> pages = ${(table.serviceName?substring(1))?uncap_first}.pages(WrapperQuery.query(${entity?uncap_first}Vo), query.Page());
-        pages.getRecords().forEach(item->{
+    @RequestMapping("lists")
+    public IPage lists(  ${entity}Vo ${entity?uncap_first}Vo, PageQuery query){
+        IPage  pages = ${(table.serviceName?substring(1))?uncap_first}.pages(WrapperQuery.query(${entity?uncap_first}Vo), query.Page());
+        WrapperQuery.ipage(pages,${entity}Vo.class).getRecords().forEach(item->{
         //         todo    item.get...
 
         });

@@ -1,4 +1,4 @@
-package ${package};
+package com.ruoyi.module.base;
 
 import java.io.Serializable;
 import java.lang.annotation.ElementType;

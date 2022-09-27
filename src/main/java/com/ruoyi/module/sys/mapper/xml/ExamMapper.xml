@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.module.sys.mapper.ExamMapper">
+
+        <!-- 通用查询映射结果 -->
+        <resultMap id="BaseResultMap" type="com.ruoyi.module.sys.entity.Exam">
+                    <id column="Id" property="Id"/>
+                    <result column="Title" property="Title"/>
+                    <result column="Content" property="Content"/>
+                    <result column="Classify" property="Classify"/>
+                    <result column="AddAt" property="AddAt"/>
+                    <result column="AddUser" property="AddUser"/>
+                    <result column="AddUserName" property="AddUserName"/>
+                    <result column="ModifyAt" property="ModifyAt"/>
+                    <result column="ModifyUser" property="ModifyUser"/>
+                    <result column="ModifyUserName" property="ModifyUserName"/>
+                    <result column="DeletedFlag" property="DeletedFlag"/>
+        </resultMap>
+
+        <!-- 通用查询结果列 -->
+        <sql id="Base_Column_List">
+            Id, Title, Content, Classify, AddAt, AddUser, AddUserName, ModifyAt, ModifyUser, ModifyUserName, DeletedFlag
+        </sql>
+
+
+
+
+    <!--关联查询开始=========================================================-->
+    <resultMap id="AssociateMap" type="java.util.Map" >
+        <!--<association property="associate" select="selectAssociate" column="Status" javaType="String" ></association>-->
+    </resultMap>
+    <select id="selectAssociate" resultType="String"  >
+        <!--select DictionaryValue as StatusName from  t_dictionary where  DicCategroyCode = 'DoctorCheckStatus'-->
+        <!--and  DictionaryCode = # {Status}-->
+    </select>
+    <!-- 自定义关联查询left join  -->
+    <select id="pagesAssociate" resultMap="AssociateMap">
+        select * from  mp_exam
+    </select>
+    <!--关联查询结束=========================================================-->
+
+
+
+
+</mapper>

@@ -1,4 +1,4 @@
-package ${package};
+package com.ruoyi.module.base;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -8,15 +8,15 @@ import java.lang.reflect.Modifier;
 import java.lang.reflect.Field;
 import java.util.*;
 /**
- * @Author ${author}
- * @Date ${date}
- * @Description ${comments!''}
+ * @Author ftm
+ * @Date 2022-09-19 17:54:13
+ * @Description Query条件构造器
  */
 public class WrapperQuery {
 
 
 
-    private static List<String> Exclude = Arrays.asList("current","size","total","serialVersionUID");
+    private static List<String> Exclude = Arrays.asList("current","size","total");
 
     public  static  QueryWrapper   query(Object vo){
        return query(objectToMap(vo));
@@ -35,6 +35,7 @@ public class WrapperQuery {
     if(map.get(key)==null || map.get(key)==""){
     return;
     }
+    //            OrganName$like
     String column="";
     if(key.contains("$like")){
     column=key.replace("$like", "");
@@ -45,14 +46,11 @@ public class WrapperQuery {
     }else if(key.contains("$gt")){
     column=key.replace("$gt", "");
     wrapper.gt(column, map.get(key));
-    }else if(key.contains("$desc")){
-    wrapper.orderByDesc(fetchWord( map.get(key)));
     }else if(key.contains("$")){
     //               特殊字段什么都不用做
     }else {
     wrapper.eq(map.get(key)!=null, key, map.get(key));
     }
-
 
 
     });
@@ -106,7 +104,7 @@ public class WrapperQuery {
             return null;
         }
         Map<String, Object> map = new HashMap<String, Object>();
-        Field[] declaredFields =getAllDeclaredFields(obj.getClass());
+        Field[] declaredFields = obj.getClass().getDeclaredFields();
         for (Field field : declaredFields) {
             field.setAccessible(true);
             try {
@@ -147,30 +145,5 @@ public class WrapperQuery {
                             pages.setRecords(list);
                             return pages;
                             }
-
-
-
-                            public static List<String>  fetchWord(Object str){
-                                if(str instanceof  String){
-                                List<String> strs = new ArrayList<String>();
-                                    Pattern p = Pattern.compile("\\w+");
-                                    Matcher m = p.matcher((String)str);
-                                    while(m.find()) {
-                                    strs.add(m.group());
-                                    }
-                                    return strs;
-                                    }
-                                    return (List<String>) str;
-                                        }
-
-                                        private static Field[] getAllDeclaredFields(Class<?> clazz) {
-                                        List<Field> fieldList = new ArrayList<>();
-                                            while (clazz != null){
-                                            fieldList.addAll(new ArrayList<>(Arrays.asList(clazz.getDeclaredFields())));
-                                            clazz = clazz.getSuperclass();
-                                            }
-                                            Field[] fields = new Field[fieldList.size()];
-                                            return fieldList.toArray(fields);
-                                            }
 
 }

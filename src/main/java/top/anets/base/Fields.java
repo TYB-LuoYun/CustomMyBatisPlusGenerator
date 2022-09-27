@@ -1,4 +1,4 @@
-package ${package};
+package top.anets.base;
 
 import java.io.Serializable;
 import java.lang.annotation.ElementType;
@@ -37,13 +37,6 @@ public class Fields   {
      */
     public static <T> String getFieldName(SFunction<T, ?> fn) {
     return getFieldName(fn, defaultSplit);
-    }
-
-    /**
-    * 获取实体类的字段名称(实体声明的字段名称)
-    */
-    public static <T> String name(SFunction<T, ?> fn) {
-        return getFieldName(fn, defaultSplit);
     }
 
     /**
