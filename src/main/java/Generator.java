@@ -31,35 +31,45 @@ public class Generator {
      */
     private static String Author="ftm";
 
-    /**
-     * 数据池
-     */
-    private static String Url = "jdbc:mysql://-----?&characterEncoding=utf8&useSSL=false&serverTimezone=UTC";
+//    /**
+//     * 其他
+//     */
+//    private static String BasicPackage = "com.dicomclub.paysystem.module";
+//    private static String TablePrefix = "t_";
+//    private static String MouleName = "sys";
+
+
+
+//    /**
+//     * 数据池
+//     */
+    private static String Url = "jdbc:mysql://127.0.0.1:3306/web_pay?characterEncoding=utf8&useSSL=false&serverTimezone=UTC";
     private static String DriverName = "com.mysql.jdbc.Driver";
     private static String UserName = "root";
-    private static String Password = "------";
+    private static String Password = "root";
+//
+//
+//    /**
+//     * 其他
+//     */
+//    private static String BasicPackage = "com.mtst";
+//    private static String TablePrefix = "t_";
+//    private static String MouleName = "sys";
+
+
+
 
 
     /**
      * 其他
      */
     private static String BasicPackage = "com.ruoyi.module";
-    private static String TablePrefix = "t_";
+    private static String TablePrefix = "hr_";
     private static String MouleName = "sys";
 
 
 
-
-
-
-
-
-
-
     public static void main(String[] args) {
-
-
-
         // 放模板变量的值
         Map<String,Object> params = new HashMap<>();
         params.put("author",Author);
@@ -67,20 +77,12 @@ public class Generator {
         MyGenerrator.generateFile(params,"PageQuery.java.ftl",BasicPackage+".base",null);
         params.put("comments","Query条件构造器");
         MyGenerrator.generateFile(params,"WrapperQuery.java.ftl",BasicPackage+".base",null);
-
-
-
+        MyGenerrator.generateFile(params,"Functions.java.ftl",BasicPackage+".base",null);
+        MyGenerrator.generateFile(params,"Fields.java.ftl",BasicPackage+".base",null);
+        MyGenerrator.generateFile(params,"Associates.java.ftl",BasicPackage+".base",null);
 
         generatorByTable();
     }
-
-
-
-
-
-
-
-
 
 
 
