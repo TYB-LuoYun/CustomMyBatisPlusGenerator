@@ -32,6 +32,15 @@ public class Generator {
     private static String Author="ftm";
 
 //    /**
+//     * 数据池
+//     */
+//    private static String Url = "jdbc:mysql://192.168.200.122:25003/ryu-pay?&characterEncoding=utf8&useSSL=false&serverTimezone=UTC";
+//    private static String DriverName = "com.mysql.jdbc.Driver";
+//    private static String UserName = "RyMysql";
+//    private static String Password = "Ry@Mysq.2021";
+//
+//
+//    /**
 //     * 其他
 //     */
 //    private static String BasicPackage = "com.dicomclub.paysystem.module";
@@ -43,10 +52,10 @@ public class Generator {
 //    /**
 //     * 数据池
 //     */
-    private static String Url = "jdbc:mysql://127.0.0.1:3306/web_pay?characterEncoding=utf8&useSSL=false&serverTimezone=UTC";
-    private static String DriverName = "com.mysql.jdbc.Driver";
-    private static String UserName = "root";
-    private static String Password = "root";
+//    private static String Url = "jdbc:mysql://127.0.0.1:3306/web_pay?characterEncoding=utf8&useSSL=false&serverTimezone=UTC";
+//    private static String DriverName = "com.mysql.jdbc.Driver";
+//    private static String UserName = "root";
+//    private static String Password = "root";
 //
 //
 //    /**
@@ -57,15 +66,27 @@ public class Generator {
 //    private static String MouleName = "sys";
 
 
+    /**
+     * 数据池
+     */
+//    private static String Url = "jdbc:mysql://127.0.0.1:3306/ftm-system?characterEncoding=utf8&useSSL=false&serverTimezone=UTC";
+//    private static String DriverName = "com.mysql.jdbc.Driver";
+//    private static String UserName = "root";
+//    private static String Password = "root";
+
+    private static String Url = "jdbc:mysql://192.168.200.125:25003/uaas?characterEncoding=utf8&useSSL=false&serverTimezone=UTC";
+    private static String DriverName = "com.mysql.jdbc.Driver";
+    private static String UserName = "root";
+    private static String Password = "Ry@Mysq.2021";
 
 
 
     /**
      * 其他
      */
-    private static String BasicPackage = "com.ruoyi.module";
-    private static String TablePrefix = "hr_";
-    private static String MouleName = "sys";
+    private static String BasicPackage = "com.ruoyi.project";
+    private static String TablePrefix = "";
+    private static String MouleName = "";
 
 
 
@@ -213,8 +234,13 @@ public class Generator {
         mpg.execute();
 
 
-        // 生成Vo对象
-        produceViewObject(true, tableNames);
+        if(StringUtils.isBlank(TablePrefix)){
+            // 生成Vo对象
+            produceViewObject(false, tableNames);
+        }else{
+            // 生成Vo对象
+            produceViewObject(true, tableNames);
+        }
     }
 
 

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.datacollect.mapper.DataCollectErrorMapper">
+
+        <!-- 通用查询映射结果 -->
+        <resultMap id="BaseResultMap" type="com.ruoyi.project.datacollect.entity.DataCollectError">
+                    <id column="id" property="id"/>
+                    <result column="belong" property="belong"/>
+                    <result column="data_id" property="dataId"/>
+                    <result column="data_content" property="dataContent"/>
+                    <result column="query_info" property="queryInfo"/>
+                    <result column="err_msg" property="errMsg"/>
+                    <result column="retry" property="retry"/>
+                    <result column="create_time" property="createTime"/>
+                    <result column="update_time" property="updateTime"/>
+        </resultMap>
+
+        <!-- 通用查询结果列 -->
+        <sql id="Base_Column_List">
+            id, belong, data_id, data_content, query_info, err_msg, retry, create_time, update_time
+        </sql>
+
+
+
+
+
+
+</mapper>

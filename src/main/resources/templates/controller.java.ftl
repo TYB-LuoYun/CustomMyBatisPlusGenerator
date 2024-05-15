@@ -56,18 +56,10 @@ class ${table.controllerName}<#if superControllerClass??>:${superControllerClass
 
     @ApiOperation(value = "新增/更新")
     @PostMapping("saveOrUpdate")
-    public void saveOrUpdate(@RequestBody ${entity} ${entity?uncap_first}){
-         ${(table.serviceName?substring(1))?uncap_first}.saveOrUpdate(${entity?uncap_first});
-    }
-
-    @ApiOperation(value = "新增/更新")
-    @PostMapping("addOrModify")
     public void addOrModify(@RequestBody ${entity}Vo ${entity?uncap_first}Vo){
         //todo yourself
         ${(table.serviceName?substring(1))?uncap_first}.saveOrUpdate(WrapperQuery.from(${entity?uncap_first}Vo, ${entity}.class));
     }
-
-
 
     @ApiOperation(value = "删除")
     @RequestMapping("deletes")
@@ -78,42 +70,20 @@ class ${table.controllerName}<#if superControllerClass??>:${superControllerClass
     @ApiOperation(value = "Id查询")
     @GetMapping("/detail/{id}")
     public ${entity} findById(@PathVariable Long id){
-        return ${(table.serviceName?substring(1))?uncap_first}.findById(id);
+        return ${(table.serviceName?substring(1))?uncap_first}.getById(id);
     }
 
 
-
-
-    @ApiOperation(value = "查询-分页-查询和返回不处理")
-    @RequestMapping("pages")
-    public IPage pages(@RequestParam(required = false)  Map<String,Object> params, PageQuery query){
-        return ${(table.serviceName?substring(1))?uncap_first}.pages(WrapperQuery.query(params), query.Page());
-    }
-
-
-    @ApiOperation(value = "查询-分页-查询和返回新增字段或特殊处理")
+    @ApiOperation(value = "查询-分页")
     @RequestMapping("lists")
     public IPage lists(  ${entity}Vo ${entity?uncap_first}Vo, PageQuery query){
-        IPage  pages = ${(table.serviceName?substring(1))?uncap_first}.pages(WrapperQuery.query(${entity?uncap_first}Vo), query.Page());
+        IPage  pages = ${(table.serviceName?substring(1))?uncap_first}.page(query.Page(),WrapperQuery.query(${entity?uncap_first}Vo));
         WrapperQuery.ipage(pages,${entity}Vo.class).getRecords().forEach(item->{
         //         todo    item.get...
 
         });
         return pages;
     }
-
-   
-
-
-
-
-
-    @ApiOperation(value = "关联查询-分页")
-    @PostMapping("pagesAssociate")
-    public IPage pagesAssociate(@RequestParam(required = false)  Map<String,Object> params, PageQuery query){
-        return ${(table.serviceName?substring(1))?uncap_first}.pagesAssociate(params, query.Page());
-    }
-
 
  }
 </#if>

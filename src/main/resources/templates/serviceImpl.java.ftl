@@ -5,12 +5,6 @@ import ${package.Mapper}.${table.mapperName};
 import ${package.Service}.${table.serviceName};
 import ${superServiceImplClassPackage};
 import org.springframework.stereotype.Service;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import java.util.Map;
-import java.util.LinkedList;
-import java.util.List;
-import ${cfg.BasicPackage}.base.WrapperQuery;
 
 /**
  * <p>
@@ -27,38 +21,6 @@ open class ${table.serviceImplName} : ${superServiceImplClass}<${table.mapperNam
 }
 <#else>
 public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.mapperName}, ${entity}> implements ${table.serviceName} {
-
-    @Override
-    public IPage pages(QueryWrapper  querys, IPage page) {
-        return baseMapper.selectPage(page,querys );
-    }
-
-    @Override
-    public int add(${entity} ${entity?uncap_first}){
-        return baseMapper.insert(${entity?uncap_first});
-    }
-
-    @Override
-    public int delete(Long id){
-        return baseMapper.deleteById(id);
-    }
-
-    @Override
-    public int updateData(${entity} ${entity?uncap_first}){
-        return baseMapper.updateById(${entity?uncap_first});
-    }
-
-    @Override
-    public ${entity} findById(Long id){
-        return  baseMapper.selectById(id);
-    }
-
-    @Override
-    public IPage pagesAssociate(Map<String, Object>  params, IPage page) {
-        return baseMapper.pagesAssociate(page ,params);
-    }
-
-
 
 }
 </#if>

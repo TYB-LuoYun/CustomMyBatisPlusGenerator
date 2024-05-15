@@ -1,6 +1,6 @@
-package ${package.Mapper};
+package com.ruoyi.project.datacollect.mapper;
 
-import ${package.Entity}.${entity};
+import com.ruoyi.project.datacollect.entity.DataCollectError;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import java.util.List;
@@ -12,9 +12,9 @@ import org.apache.ibatis.annotations.Param;
     * mapper接口
     * </p>
  *
- * @author ${author}
- * @since ${date}
+ * @author ftm
+ * @since 2024-04-22
  */
-public interface ${table.mapperName} extends BaseMapper<${entity}> {
+public interface DataCollectErrorMapper extends BaseMapper<DataCollectError> {
 
 }

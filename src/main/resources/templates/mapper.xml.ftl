@@ -39,21 +39,6 @@
 
 
 
-    <!--关联查询开始=========================================================-->
-    <resultMap id="AssociateMap" type="java.util.Map" >
-        <!--<association property="associate" select="selectAssociate" column="Status" javaType="String" ></association>-->
-    </resultMap>
-    <select id="selectAssociate" resultType="String"  >
-        <!--select DictionaryValue as StatusName from  t_dictionary where  DicCategroyCode = 'DoctorCheckStatus'-->
-        <!--and  DictionaryCode = # {Status}-->
-    </select>
-    <!-- 自定义关联查询left join  -->
-    <select id="pagesAssociate" resultMap="AssociateMap">
-        select * from  ${table.name}
-    </select>
-    <!--关联查询结束=========================================================-->
-
-
 
 
 </mapper>
